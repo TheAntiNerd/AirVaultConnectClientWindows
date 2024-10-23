@@ -5,52 +5,62 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ZitiDesktopEdge"
              mc:Ignorable="d" 
-             d:DesignHeight="64" d:DesignWidth="375" Height="64">
+             d:DesignHeight="64" d:DesignWidth="375" Height="80">
     <Canvas Name="MainArea" MouseEnter="Canvas_MouseEnter" MouseLeave="Canvas_MouseLeave">
-        <Rectangle Fill="#0F0C28" HorizontalAlignment="Left" Stroke="Black" VerticalAlignment="Top" ClipToBounds="True"></Rectangle>
-        <Rectangle Name="OverState" Fill="#FFFFFF" Height="64" Width="400" Opacity="0" ClipToBounds="True"></Rectangle>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="30" Cursor="Hand" MouseUp="OpenDetails"/>
-            </Grid.ColumnDefinitions>
-            <Grid HorizontalAlignment="Stretch">
+        <Rectangle Fill="#FFFFFF" HorizontalAlignment="Left" Stroke="Black" VerticalAlignment="Top" ClipToBounds="True"></Rectangle>
+        <Rectangle Name="OverState" Fill="#EBF3FF" Height="80" Width="400" Opacity="100" ClipToBounds="True"></Rectangle>
+        <Border Padding="16,0,16,0">
+            <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="70"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" Cursor="Hand" MouseUp="OpenDetails"/>
                 </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="20"/>
-                </Grid.RowDefinitions>
+                
+                <Grid Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-                <local:Toggler x:Name="ToggleSwitch" Grid.Column="0" Grid.Row="0" Margin="0,10,0,0"></local:Toggler>
-                <Label Name="ToggleStatus" Grid.Column="0" Grid.Row="1" Margin="0,-5,0,0" Content="Enabled" Foreground="White" FontSize="11" Typography.Capitals="AllSmallCaps" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"></Label>
-                <Rectangle Fill="Transparent" Grid.Column="0" Grid.RowSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Cursor="Hand" MouseUp="ToggledSwitch"></Rectangle>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0">
+                        <TextBlock Name="IdName" Width="230" Height="20" Padding="0,0,0,0" Margin="0,0,0,0" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Medium" FontSize="16" Foreground="#44475B" HorizontalAlignment="Left" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap">
+                        </TextBlock>
 
-                <Label Name="IdName" MaxWidth="210" Grid.Row="0" Padding="0,0,26,0" Grid.Column="1" VerticalAlignment="Center" Margin="0,11,0,0" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans" FontSize="16" Foreground="White" HorizontalAlignment="Left">
-                    <TextBlock TextTrimming="CharacterEllipsis">Identity Name</TextBlock>
-                </Label>
-                <Rectangle Fill="Transparent" Grid.RowSpan="2" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Cursor="Hand" MouseUp="OpenDetails"></Rectangle>
+                        <TextBlock Name="IdUrl" Cursor="Hand" MouseUp="OpenDetails" Width="230" Height="20" Margin="0,0,0,0" Padding="0,0,0,0" Typography.Capitals="AllSmallCaps" FontSize="16" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Regular" Foreground="#737790" HorizontalAlignment="Left" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap">
+                        </TextBlock>
+                        
+                    </StackPanel>
 
-                <Label Name="IdUrl" Cursor="Hand" MouseUp="OpenDetails" MaxWidth="180" MinWidth="210" Grid.Column="1" Grid.Row="1" FontSize="11" Margin="0,-5,0,0" Padding="0,5,0,0" Typography.Capitals="AllSmallCaps" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans" Foreground="White" HorizontalAlignment="Left">
-                    <TextBlock TextTrimming="CharacterEllipsis"></TextBlock>
-                </Label>
-                <Image Name="PostureTimedOut" Visibility="Collapsed" Grid.Column="2" Source="/Assets/Images/lockout.png" VerticalAlignment="Bottom" HorizontalAlignment="Center" RenderOptions.BitmapScalingMode="Fant" Width="26" Height="26" Margin="0,0,0,6" Cursor="Hand" MouseUp="MFAAuthenticate"></Image>
-                <Image Name="MfaRequired" Source="/Assets/Images/mfaoff.png" Grid.Column="2" Cursor="Hand" Width="50" Height="26" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="Fant" Stretch="Uniform" Visibility="Visible" MouseUp="MFAAuthenticate"></Image>
-                <Image Name="ExtAuthRequired" Source="/Assets/Images/ext-auth-needed.png" Grid.Column="2" Cursor="Hand" Width="50" Height="26" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="Fant" Stretch="Uniform" Visibility="Visible" MouseUp="CompleteExtAuth"></Image>
-                <Canvas Name="ServiceCountArea" Grid.Column="2" Grid.Row="0" Width="50" Height="40" Cursor="Hand" Visibility="Collapsed">
-					<Border Name="ServiceCountBorder" Width="44" Height="26" Background="#0068F9" CornerRadius="12" Canvas.Top="10" Canvas.Left="3"></Border>
-                    <Label Name="ServiceCount" Width="50" Height="26" Canvas.Top="9" Padding="0,0,0,0" FontSize="14" Content="23" Foreground="White" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
-                </Canvas>
-                <Image Name="TimerCountdown" Visibility="Collapsed" Grid.Column="2" Source="/Assets/Images/timer.png" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="26" Height="26" Margin="0,0,0,6" Cursor="Hand" MouseUp="MFAAuthenticate"></Image>
-                <Label Name="ServiceCountAreaLabel" Grid.Column="3" MouseUp="OpenDetails" Grid.Row="1" Margin="0,-5,0,0" Content="authenticate" Cursor="Hand" Foreground="White" FontSize="11" HorizontalAlignment="Stretch" Typography.Capitals="AllSmallCaps" HorizontalContentAlignment="Center"></Label>
-                <Rectangle Fill="Transparent" Grid.Column="2" Grid.RowSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Cursor="Hand" MouseUp="DoMFAOrOpen"></Rectangle>
+                    <Canvas Name="ServiceCountArea" Grid.Column="0" Grid.Row="1" Visibility="Visible">
+                        <!--Border Name="ServiceCountBorder" Width="44" Height="26" Background="#0068F9" CornerRadius="12" Canvas.Top="10" Canvas.Left="3"></Border-->
+                        <Label Name="ServiceCount" Canvas.Top="9" Padding="0,0,0,0" FontSize="12" Content="23" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Regular" Foreground="#737790" HorizontalAlignment="Left"  HorizontalContentAlignment="Left"></Label>
+                    </Canvas>
+
+                    <!--Rectangle Fill="Transparent" Grid.RowSpan="2" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Cursor="Hand" MouseUp="OpenDetails"></Rectangle-->
+
+                    <Image Name="PostureTimedOut" Visibility="Collapsed" Grid.Column="2" Source="/Assets/Images/lockout.png" VerticalAlignment="Bottom" HorizontalAlignment="Center" RenderOptions.BitmapScalingMode="Fant" Width="26" Height="26" Margin="0,0,0,6" Cursor="Hand" MouseUp="MFAAuthenticate"></Image>
+                    <Image Name="MfaRequired" Source="/Assets/Images/mfaoff.png" Grid.Column="2" Cursor="Hand" Width="50" Height="26" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="Fant" Stretch="Uniform" Visibility="Visible" MouseUp="MFAAuthenticate"></Image>
+                    <Image Name="ExtAuthRequired" Source="/Assets/Images/ext-auth-needed.png" Grid.Column="2" Cursor="Hand" Width="50" Height="26" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="Fant" Stretch="Uniform" Visibility="Visible" MouseUp="CompleteExtAuth"></Image>
+                    
+                    <Image Name="TimerCountdown" Visibility="Collapsed" Grid.Column="2" Source="/Assets/Images/timer.png" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="26" Height="26" Margin="0,0,0,6" Cursor="Hand" MouseUp="MFAAuthenticate"></Image>
+                    <Label Name="ServiceCountAreaLabel" Grid.Column="3" MouseUp="OpenDetails" Grid.Row="1" Margin="0,-5,0,0" Content="authenticate" Cursor="Hand" Foreground="White" FontSize="11" HorizontalAlignment="Stretch" Typography.Capitals="AllSmallCaps" HorizontalContentAlignment="Center"></Label>
+                    <Rectangle Fill="Transparent" Grid.Column="2" Grid.RowSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Cursor="Hand" MouseUp="DoMFAOrOpen"></Rectangle>
+                </Grid>
+                
+                <local:Toggler x:Name="ToggleSwitch" Grid.Column="1" Grid.Row="0" Margin="0,0,5,0" HorizontalAlignment="Right"></local:Toggler>
+                <Label Name="ToggleStatus" Grid.Column="1" Grid.Row="1" Margin="0,0,0,0" Content="Enabled" Foreground="White" FontSize="11" Typography.Capitals="AllSmallCaps" HorizontalAlignment="Right" HorizontalContentAlignment="Center" Visibility="Collapsed"></Label>
+                <Rectangle Fill="Transparent" Grid.Column="1" Grid.RowSpan="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Cursor="Hand" MouseUp="ToggledSwitch" Visibility="Hidden"></Rectangle>
+
+                <Image Grid.Column="2" Source="/Assets/Images/next.png" Margin="5,0,10,0" VerticalAlignment="Center" Width="18" Height="18" MouseUp="OpenDetails" Cursor="Hand"></Image>
+                <Rectangle Fill="Transparent" Grid.Column="2"  Grid.RowSpan="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Cursor="Hand" MouseUp="OpenDetails"></Rectangle>
+
             </Grid>
-            <Image Grid.Column="1" Source="/Assets/Images/next.png" Width="12" MouseUp="OpenDetails" Cursor="Hand"></Image>
-            <Rectangle Fill="Transparent" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Cursor="Hand" MouseUp="OpenDetails"></Rectangle>
-
-        </Grid>
+        </Border>
     </Canvas>
 </UserControl>

@@ -93,6 +93,8 @@ namespace ZitiDesktopEdge {
 
             appVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             LicensesItems.Text = licenseData;
+
+            AutoUpdateToggle.OnToggled += ToggleAutoUpdate;
             // don't check from the UI any more... CheckUpdates();
         }
 
@@ -156,9 +158,26 @@ namespace ZitiDesktopEdge {
 
         async private void SetAutomaticUpgradesMenuAction(object sender, MouseButtonEventArgs e) {
             bool disableAutomaticUpgrades = false;
-            if (sender == AutomaticUpgradesItemOff) {
+            /*if (sender == AutomaticUpgradesItemOff) {
                 disableAutomaticUpgrades = true;
+            }*/
+            var monitorClient = (MonitorClient)Application.Current.Properties["MonitorClient"];
+            try {
+                SvcResponse r = await monitorClient.SetAutomaticUpgradeDisabledAsync(disableAutomaticUpgrades);
+                if (r.Code != 0) {
+                    logger.Error(r?.Error);
+                }
+            } catch (MonitorServiceException) {
+                MainWindow.ShowError("Could Not Set Automatic Update", "The monitor service is offline");
+            } catch (Exception ex) {
+                logger.Error("unexpected error when setting automatic upgrade enabled", ex);
             }
+            SetAutomaticUpgradesState();
+        }
+
+        async private void ToggleAutoUpdate(bool on) {
+            bool disableAutomaticUpgrades = !on;
+            
             var monitorClient = (MonitorClient)Application.Current.Properties["MonitorClient"];
             try {
                 SvcResponse r = await monitorClient.SetAutomaticUpgradeDisabledAsync(disableAutomaticUpgrades);
@@ -194,9 +213,10 @@ namespace ZitiDesktopEdge {
             IdListScrollView.Visibility = Visibility.Collapsed;
             MainItems.Visibility = Visibility.Collapsed;
             AboutItems.Visibility = Visibility.Collapsed;
-            MainItemsButton.Visibility = Visibility.Collapsed;
+            //MainItemsButton.Visibility = Visibility.Collapsed;
             AboutItemsArea.Visibility = Visibility.Collapsed;
             BackArrow.Visibility = Visibility.Collapsed;
+            MenuLogo.Visibility = Visibility.Visible;
             AdvancedItems.Visibility = Visibility.Collapsed;
             LicensesItems.Visibility = Visibility.Collapsed;
             LogsItems.Visibility = Visibility.Collapsed;
@@ -210,9 +230,10 @@ namespace ZitiDesktopEdge {
 
             if (menuState == "About") {
                 MenuTitle.Content = "About";
-                AboutItemsArea.Visibility = Visibility.Visible;
+                AboutItemsArea.Visibility = Visibility.Collapsed;
                 AboutItems.Visibility = Visibility.Visible;
                 BackArrow.Visibility = Visibility.Visible;
+                MenuLogo.Visibility = Visibility.Collapsed;
 
                 string version = "";
                 try {
@@ -226,42 +247,49 @@ namespace ZitiDesktopEdge {
                 VersionInfo.Content = $"App: {appVersion} Service: {version}";
 
             } else if (menuState == "Advanced") {
-                MenuTitle.Content = "Advanced Settings";
+                MenuTitle.Content = "Advanced settings";
                 AdvancedItems.Visibility = Visibility.Visible;
                 BackArrow.Visibility = Visibility.Visible;
+                MenuLogo.Visibility = Visibility.Collapsed;
             } else if (menuState == "Licenses") {
                 MenuTitle.Content = "Third Party Licenses";
                 LicensesItems.Visibility = Visibility.Visible;
                 BackArrow.Visibility = Visibility.Visible;
+                MenuLogo.Visibility = Visibility.Collapsed;
             } else if (menuState == "Logs") {
-                MenuTitle.Content = "Advanced Settings";
+                MenuTitle.Content = "Advanced settings";
                 AdvancedItems.Visibility = Visibility.Visible;
                 //string targetFile = NativeMethods.GetFinalPathName(MainWindow.ExpectedLogPathServices);
                 string targetFile = MainWindow.ExpectedLogPathServices;
 
                 OpenLogFile("service", targetFile);
                 BackArrow.Visibility = Visibility.Visible;
+                MenuLogo.Visibility = Visibility.Collapsed;
             } else if (menuState == "UILogs") {
-                MenuTitle.Content = "Advanced Settings";
+                MenuTitle.Content = "Advanced settings";
                 AdvancedItems.Visibility = Visibility.Visible;
                 OpenLogFile("UI", MainWindow.ExpectedLogPathUI);
                 BackArrow.Visibility = Visibility.Visible;
+                MenuLogo.Visibility = Visibility.Collapsed;
             } else if (menuState == "LogLevel") {
                 ResetLevels();
 
-                MenuTitle.Content = "Set Log Level";
+                MenuTitle.Content = "Logging level";
                 LogLevelItems.Visibility = Visibility.Visible;
                 BackArrow.Visibility = Visibility.Visible;
+                MenuLogo.Visibility = Visibility.Collapsed;
             } else if (menuState == "ConfigureAutomaticUpgrades") {
                 SetAutomaticUpgradesState();
 
-                MenuTitle.Content = "Automatic Upgrades";
+                MenuTitle.Content = "Auto updates";
                 AutomaticUpgradesItems.Visibility = Visibility.Visible;
                 BackArrow.Visibility = Visibility.Visible;
+                MenuLogo.Visibility = Visibility.Collapsed;
             } else if (menuState == "Config") {
-                MenuTitle.Content = "Tunnel Configuration";
+                MenuTitle.Content = "Tunnel configuration";
                 ConfigItems.Visibility = Visibility.Visible;
                 BackArrow.Visibility = Visibility.Visible;
+                MenuLogo.Visibility = Visibility.Collapsed;
 
                 ConfigPageSize.Value = ((Application.Current.Properties.Contains("ApiPageSize")) ? Application.Current.Properties["ApiPageSize"].ToString() : "25");
                 ConfigIp.Value = Application.Current.Properties["ip"]?.ToString();
@@ -273,10 +301,11 @@ namespace ZitiDesktopEdge {
                 MenuTitle.Content = "Identities";
                 IdListScrollView.Visibility = Visibility.Visible;
                 BackArrow.Visibility = Visibility.Visible;
+                MenuLogo.Visibility = Visibility.Collapsed;
             } else {
                 MenuTitle.Content = "Main Menu";
                 MainItems.Visibility = Visibility.Visible;
-                MainItemsButton.Visibility = Visibility.Visible;
+                //MainItemsButton.Visibility = Visibility.Visible;
             }
 
             // ShowUpdateAvailable();
@@ -419,9 +448,11 @@ namespace ZitiDesktopEdge {
 
         private void SetAutomaticUpgradesState() {
             bool disabled = state.AutomaticUpdatesDisabled;
-            this.AutomaticUpgradesItemOn.IsSelected = !disabled;
-            this.AutomaticUpgradesItemOff.IsSelected = disabled;
+            //this.AutomaticUpgradesItemOn.IsSelected = !disabled;
+            //this.AutomaticUpgradesItemOff.IsSelected = disabled;
             this.UpdateUrl.Text = state.AutomaticUpdateURL;
+
+            this.AutoUpdateToggle.Enabled = !disabled;
         }
 
         async private void CheckForUpdate_OnClick(object sender, MouseButtonEventArgs e) {

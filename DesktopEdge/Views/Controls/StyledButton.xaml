@@ -15,16 +15,16 @@
             <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
         
-        <Rectangle x:Name="ButtonBg" Margin="40,0,40,0" Opacity="0.8" RadiusX="7" Grid.Row="8" RadiusY="7" ClipToBounds="True" Height="30" VerticalAlignment="Bottom" MouseUp="DoClick" Cursor="Hand" MouseEnter="Hover" MouseLeave="Leave" MouseDown="Down">
+        <Rectangle x:Name="ButtonBg" Margin="40,0,40,0" Opacity="0.8" RadiusX="8" Grid.Row="8" RadiusY="8" ClipToBounds="True" Height="30" VerticalAlignment="Bottom" MouseUp="DoClick" Cursor="Hand" MouseEnter="Hover" MouseLeave="Leave" MouseDown="Down">
             <Rectangle.Fill>
-                <SolidColorBrush x:Name="ButtonBgColor" Color="#0069FF"/>
+                <SolidColorBrush x:Name="ButtonBgColor" Color="#298DFF"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="ButtonBgDarken" Margin="40,0,40,0" Opacity="0.0" RadiusX="7" Grid.Row="8" RadiusY="7" ClipToBounds="True" Height="30" VerticalAlignment="Bottom" MouseUp="DoClick" Cursor="Hand" MouseEnter="Hover" MouseLeave="Leave" MouseDown="Down">
+        <Rectangle x:Name="ButtonBgDarken" Margin="40,0,40,0" Opacity="0.0" RadiusX="8" Grid.Row="8" RadiusY="8" ClipToBounds="True" Height="30" VerticalAlignment="Bottom" MouseUp="DoClick" Cursor="Hand" MouseEnter="Hover" MouseLeave="Leave" MouseDown="Down">
             <Rectangle.Fill>
                 <SolidColorBrush Color="#000000"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Label x:Name="ButtonLabel" HorizontalAlignment="Center" IsHitTestVisible="False" Foreground="#FFFFFF" Grid.Row="8"></Label>
+        <Label x:Name="ButtonLabel" HorizontalAlignment="Center" IsHitTestVisible="False" Foreground="#FFFFFF" Grid.Row="8" FontSize="14" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Medium"></Label>
     </Grid>
 </UserControl>

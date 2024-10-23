@@ -95,7 +95,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>..\ziti.ico</ApplicationIcon>
+    <ApplicationIcon>airvault.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationFramework.Aero2" />
@@ -281,6 +281,10 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.manifest" />
+    <Resource Include="Assets\Fonts\Poppins-Light.ttf" />
+    <Resource Include="Assets\Fonts\Poppins-Medium.ttf" />
+    <Resource Include="Assets\Fonts\Poppins-Regular.ttf" />
+    <Resource Include="Assets\Fonts\Poppins-SemiBold.ttf" />
     <None Include="ZitiDesktopEdge-log.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -475,6 +479,13 @@
     <Resource Include="Assets\Images\processing.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="airvault.ico" />
+    <Resource Include="Assets\Images\updates.png" />
+    <Resource Include="Assets\Images\log_level.png" />
+    <Resource Include="Assets\Images\tunnel.png" />
+    <Resource Include="Assets\Images\app_logs.png" />
+    <Resource Include="Assets\Images\service_logs.png" />
+    <Resource Include="Assets\Images\edit.png" />
     <Resource Include="Assets\Images\ext-auth-needed.png" />
     <Resource Include="ziti-v2.ico" />
     <Content Include="..\ziti.ico" />

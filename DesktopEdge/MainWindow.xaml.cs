@@ -428,7 +428,7 @@ namespace ZitiDesktopEdge {
             this.contextMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] { this.contextMenuItem });
 
             this.contextMenuItem.Index = 0;
-            this.contextMenuItem.Text = "&Close UI";
+            this.contextMenuItem.Text = "E&xit";
             this.contextMenuItem.Click += new System.EventHandler(this.contextMenuItem_Click);
 
 
@@ -1393,7 +1393,7 @@ namespace ZitiDesktopEdge {
                 }
             }
             icon += ".ico";
-            var iconUri = new Uri(icon);
+            var iconUri = new Uri("pack://application:,,/Assets/Images/icon.ico");
             Stream iconStream = Application.GetResourceStream(iconUri).Stream;
             notifyIcon.Icon = new Icon(iconStream);
 
@@ -1423,9 +1423,9 @@ namespace ZitiDesktopEdge {
                     foreach (var id in ids) {
                         IdentityItem idItem = new IdentityItem();
 
-                        idItem.ToggleStatus.IsEnabled = id.IsEnabled;
+                        /*idItem.ToggleStatus.IsEnabled = id.IsEnabled;
                         if (id.IsEnabled) idItem.ToggleStatus.Content = "ENABLED";
-                        else idItem.ToggleStatus.Content = "DISABLED";
+                        else idItem.ToggleStatus.Content = "DISABLED";*/
 
                         idItem.Authenticate += IdItem_Authenticate;
                         idItem.OnStatusChanged += Id_OnStatusChanged;

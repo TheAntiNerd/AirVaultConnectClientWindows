@@ -154,7 +154,7 @@ namespace ZitiDesktopEdge {
                 //MainArea.Opacity = 0.6;
                 MfaRequired.Visibility = Visibility.Collapsed;
             }
-            ServiceCountBorder.Background = DefaultBrush;
+            //ServiceCountBorder.Background = DefaultBrush;
         }
 
         private void MFANotEnabledAndNotNeeded() {
@@ -164,7 +164,7 @@ namespace ZitiDesktopEdge {
 
         private void MFANotEnabledAndNeeded() {
             ServiceCount.Content = "MFA";
-            ServiceCountBorder.Background = MFANeededBrush;
+            //ServiceCountBorder.Background = MFANeededBrush;
             ServiceCountAreaLabel.Content = "disabled";
         }
 
@@ -182,13 +182,13 @@ namespace ZitiDesktopEdge {
             available = _identity.Services.Count;
             ToggleSwitch.Enabled = _identity.IsEnabled;
             ServiceCountAreaLabel.Content = "services";
-            ServiceCount.Content = _identity.Services.Count.ToString();
+            ServiceCount.Content = _identity.Services.Count.ToString() + " service" + ((_identity.Services.Count != 1) ? "s" : "");
             MainArea.Opacity = 1.0;
             ServiceCountArea.Visibility = Visibility.Visible;
             ServiceCountAreaLabel.Content = "services";
             // logger.Info("RefreshUI " + _identity.Name + " MFA: "+ _identity.IsMFAEnabled+" Authenticated: "+_identity.IsAuthenticated);
 
-            ServiceCount.Content = _identity.Services.Count.ToString();
+            ServiceCount.Content = _identity.Services.Count.ToString() + " service" + ((_identity.Services.Count != 1) ? "s" : "");
             if (_identity.IsMFAEnabled) {
                 if (_identity.IsMFANeeded) {
                     // enabled and needed = needs to be authorized. show the lock icon and tell the user to auth
@@ -223,9 +223,9 @@ namespace ZitiDesktopEdge {
                 ServiceCountArea.Visibility = Visibility.Collapsed;
             }
 
-            IdName.Content = _identity.Name;
-            IdUrl.Content = _identity.ControllerUrl;
-            if (_identity.ContollerVersion != null && _identity.ContollerVersion.Length > 0) IdUrl.Content = _identity.ControllerUrl + " at " + _identity.ContollerVersion;
+            IdName.Text = _identity.Name;
+            IdUrl.Text = _identity.ControllerUrl;
+            if (_identity.ContollerVersion != null && _identity.ContollerVersion.Length > 0) IdUrl.Text = _identity.ControllerUrl + " at " + _identity.ContollerVersion;
 
             ToggleStatus.Content = ((ToggleSwitch.Enabled) ? "ENABLED" : "DISABLED");
         }

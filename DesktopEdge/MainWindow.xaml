@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         ShowInTaskbar="False"
         x:Name="MainUI"
-        Title="Ziti Desktop Edge" Height="520" 
+        Title="AirVault" Height="520" 
         Width="420" ResizeMode="NoResize" 
         ClipToBounds="False"
         Icon="Assets/Images/icon.png" AllowsTransparency="True" 
@@ -113,18 +113,18 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Canvas x:Name="ArrowCanvas" ClipToBounds="False">
-            <Rectangle x:Name="Arrow" HorizontalAlignment="Center" Height="20" Fill="#070826" Width="20" ClipToBounds="True" Canvas.Left="185" Canvas.Bottom="-10">
+            <Rectangle x:Name="Arrow" HorizontalAlignment="Center" Height="20" Fill="White" Width="20" ClipToBounds="True" Canvas.Left="185" Canvas.Bottom="-10">
                 <Rectangle.LayoutTransform>
                     <RotateTransform Angle="-45"/>
                 </Rectangle.LayoutTransform>
             </Rectangle>
         </Canvas>
-        <Border Margin="10,10,10,10" Name="UIBorder" BorderBrush="Black" BorderThickness="8" CornerRadius="10">
+        <Border Margin="10,10,10,10" Name="UIBorder" BorderBrush="Black" BorderThickness="8" CornerRadius="8">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="15" Direction="1" RenderingBias="Quality" ShadowDepth="1" Opacity="1"/>
             </Border.Effect>
         </Border>
-        <Rectangle Margin="10,10,10,10" Name="BgColor" Stroke="Black" RadiusY="10" RadiusX="10" ClipToBounds="True">
+        <Rectangle Margin="10,10,10,10" Name="BgColor" Stroke="Black" StrokeThickness="1" RadiusY="8" RadiusX="8" ClipToBounds="True">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="/Assets/Images/background.png" />
             </Rectangle.Fill>
@@ -132,84 +132,75 @@
         <StackPanel x:Name="MainView" Margin="10,10,10,-20">
             <Grid HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0" Cursor="Hand" Orientation="Vertical" Margin="14,16,14,14" MouseLeftButtonUp="ShowMenu">
-                    <Image Source="/Assets/Images/hamburger.png" Margin="5,0,0,-4" Width="26" Height="26" HorizontalAlignment="Left"></Image>
-                    <Label Content="MAIN" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans" Foreground="White" Height="25" FontSize="10"></Label>
-                    <Label Content="MENU" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans" Foreground="White" Height="25" Margin="0,-14,0,0" FontSize="10"></Label>
+                <StackPanel x:Name="AddIdAreaButton" Grid.Column="0" Cursor="Hand" Orientation="Vertical" Margin="12,12,0,0">
+                    <Image Source="/Assets/Images/appicon.png" Margin="0,0,0,0" Width="28" Height="28" HorizontalAlignment="Left"></Image>
                 </StackPanel>
-                <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Stretch" Margin="0,12" MouseDown="Window_MouseDown">
-                    <Image Source="/Assets/Images/z.png" Height="40" RenderOptions.BitmapScalingMode="Fant"></Image>
-                    <Label Content="Tap to Connect" MouseDoubleClick="Label_MouseDoubleClick" Margin="0,-3,0,0" FontFamily="pack://application:,,,/Assets/Fonts/#Russo One" FontSize="14" Foreground="White" HorizontalAlignment="Center"></Label>
-                </StackPanel>
-                <StackPanel x:Name="AddIdAreaButton" Grid.Column="2" Cursor="Hand" Orientation="Vertical" Margin="14,16,14,14" MouseLeftButtonUp="AddIdentity">
-                    <Image Source="/Assets/Images/identity.png" Margin="0,0,5,-4" Width="26" Height="26" HorizontalAlignment="Right"></Image>
-                    <Label Content="ADD" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans" Foreground="White" Height="25" FontSize="10" HorizontalAlignment="Right"></Label>
-                    <Label Content="IDENTITY" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans" Foreground="White" Height="25" Margin="0,-14,0,0" FontSize="10" HorizontalAlignment="Right"></Label>
+                <StackPanel Grid.Column="1" Cursor="Hand" Orientation="Vertical" Margin="0,12,12,0" MouseLeftButtonUp="ShowMenu">
+                    <Image Source="/Assets/Images/hamburger.png" Margin="0,0,0,0" Width="28" Height="28" HorizontalAlignment="Right"></Image>
                 </StackPanel>
             </Grid>
-            <Canvas Name="ConnectButton" Width="400" Height="160" MouseUp="StartZitiService" Visibility="Collapsed">
-                <Grid Width="{Binding ActualWidth, ElementName=ConnectButton}" Height="140">
+            <Canvas Name="ConnectButton" Width="400" Height="116" MouseUp="StartZitiService" Visibility="Collapsed" Margin="0,24">
+                <Grid Width="{Binding ActualWidth, ElementName=ConnectButton}" Height="116">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="221*"/>
-                        <ColumnDefinition Width="129*"/>
+                        <ColumnDefinition Width="116*"/>
+                        <ColumnDefinition Width="116*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Source="/Assets/Images/connect.png" Height="140" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="105,0" />
+                    <Image Source="/Assets/Images/connect.png" Width="116" Height="116" HorizontalAlignment="Center" Grid.ColumnSpan="2" Margin="105,0" />
                 </Grid>
             </Canvas>
-            <Canvas Name="DisconnectButton" Width="400" Height="160" MouseUp="Disconnect" Visibility="Collapsed">
-                <Grid Width="{Binding ActualWidth, ElementName=DisconnectButton}" Height="140">
-                    <Image Source="/Assets/Images/connected.png" Height="140" HorizontalAlignment="Center" />
+            <Canvas Name="DisconnectButton" Width="400" Height="116" MouseUp="Disconnect" Visibility="Collapsed" Margin="0,24">
+                <Grid Width="{Binding ActualWidth, ElementName=DisconnectButton}" Height="116">
+                    <Image Source="/Assets/Images/connected.png" Width="116" Height="116" HorizontalAlignment="Center" Margin="105,0"/>
                 </Grid>
                 <Grid Width="{Binding ActualWidth, ElementName=DisconnectButton}" Height="140">
-                    <Label Name="ConnectedTime" HorizontalAlignment="Center" Content="00:00:00" Foreground="White" Padding="0,90,0,0"/>
+                    <Label Name="ConnectedTime" HorizontalAlignment="Center" Content="00:00:00" Foreground="White" Padding="0,90,0,0" Visibility="Hidden"/>
                 </Grid>
                 <Grid Width="{Binding ActualWidth, ElementName=DisconnectButton}" Height="140">
-                    <Label HorizontalAlignment="Center"  Content="STOP" Foreground="White" Padding="0,105,0,0"/>
+                    <Label HorizontalAlignment="Center"  Content="STOP" Foreground="White" Padding="0,105,0,0" Visibility="Hidden"/>
                 </Grid>
             </Canvas>
-            <Grid x:Name="StatArea" HorizontalAlignment="Stretch" Width="Auto" Margin="0,30,0,0">
+            <Grid x:Name="StatArea" HorizontalAlignment="Center" Margin="0,32,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0" Orientation="Vertical">
-                    <Grid HorizontalAlignment="Stretch" Width="Auto">
+                <StackPanel Grid.Column="0" Orientation="Vertical" Margin="0,0,24,0">
+                    <Grid HorizontalAlignment="Center" Width="Auto">
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="16"/>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="40"/>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Content="Download Speed" Foreground="White" HorizontalAlignment="Right" FontSize="14" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans"></Label>
-                        <Image Grid.Column="1" Source="/Assets/Images/down.png" Width="20" HorizontalAlignment="Left" Height="20"></Image>
+                        <Image Grid.Column="0" Source="/Assets/Images/down.png" Width="16" HorizontalAlignment="Left" Height="16"></Image>
+                        <Label Grid.Column="1" Content="Download" Foreground="#737790" HorizontalAlignment="Left" FontSize="16" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Medium"></Label>
                     </Grid>
-                    <Label Name="DownloadSpeed" Margin="0,-16,0,0" Foreground="#0069FF" Content="0" FontSize="40" HorizontalAlignment="Center" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans" />
-                    <Label Name="DownloadSpeedLabel" Foreground="White" Margin="0,-20,0,30" Content="KBps" FontSize="11" HorizontalAlignment="Center" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans" />
+                    <Label Name="DownloadSpeed" Margin="3.5,-15,0,0" Foreground="#44475B" Content="0" FontSize="20" HorizontalAlignment="Center" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins SemiBold" />
+                    <Label Name="DownloadSpeedLabel" Foreground="#737790" Margin="3.5,-15,0,30" Content="Mbps" FontSize="14" HorizontalAlignment="Center" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Regular" />
                 </StackPanel>
-                <StackPanel Grid.Column="1" Orientation="Vertical">
-                    <Grid HorizontalAlignment="Stretch" Width="Auto">
+                <StackPanel Grid.Column="1" Orientation="Vertical" Margin="24,0,0,0">
+                    <Grid HorizontalAlignment="Center" Width="Auto">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Content="Upload Speed" Foreground="White" HorizontalAlignment="Right" FontSize="14" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans"></Label>
-                        <Image Grid.Column="1" Source="/Assets/Images/up.png" Width="20" HorizontalAlignment="Left" Height="20"></Image>
+                        <Image Grid.Column="0" Source="/Assets/Images/up.png" Width="16" HorizontalAlignment="Right" Height="16"></Image>
+                        <Label Grid.Column="1" Content="Upload" Foreground="#737790" HorizontalAlignment="Right" FontSize="16" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Medium"></Label>
                     </Grid>
-                    <Label Name="UploadSpeed" Margin="0,-16,0,0" Foreground="#FF0047" Content="0" FontSize="40" HorizontalAlignment="Center" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans" />
-                    <Label Name="UploadSpeedLabel" Foreground="White" Margin="0,-20,0,30" Content="KBps" FontSize="11" HorizontalAlignment="Center" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans" />
+                    <Label Name="UploadSpeed" Margin="3.5,-15,0,0" Foreground="#44475B" Content="0" FontSize="20" HorizontalAlignment="Center" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins SemiBold" />
+                    <Label Name="UploadSpeedLabel" Foreground="#737790" Margin="3.5,-15,0,30" Content="Mbps" FontSize="14" HorizontalAlignment="Center" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Regular" />
                 </StackPanel>
             </Grid>
 
             <ScrollViewer Name="IdListScroller" MinHeight="60" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto" FocusVisualStyle="{x:Null}" CanContentScroll="True" ClipToBounds="True" PanningMode="VerticalOnly" PanningRatio=".1">
                 <StackPanel Name="IdList" Orientation="Vertical" IsItemsHost="False" LayoutUpdated="IdList_LayoutUpdated" FocusVisualStyle="{x:Null}"></StackPanel>
             </ScrollViewer>
-            <Grid HorizontalAlignment="Stretch" Margin="0,20,0,10" Width="Auto">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="0,20,0,10" Width="Auto">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label Name="AddIdButton" Padding="0,0,0,20" Grid.Column="0" Margin="0,0,0,20" Content="Add Identity" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans" Foreground="#0069FF" FontSize="16" Cursor="Hand" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="AddIdentity"></Label>
+                <Label Name="AddIdButton" Padding="0,0,0,20" Grid.Column="0" Margin="0,0,0,20" Content="+ Add Identity" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Medium" Foreground="#44475B" FontSize="16" Cursor="Hand" HorizontalAlignment="Center" VerticalAlignment="Center" MouseDown="AddIdentity"></Label>
             </Grid>
         </StackPanel>
         <Canvas x:Name="AlertCanvas" ClipToBounds="False" Visibility="Collapsed">

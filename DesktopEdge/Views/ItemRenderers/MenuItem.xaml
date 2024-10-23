@@ -31,19 +31,18 @@
         </EventTrigger>
     </UserControl.Triggers>
     <Grid>
-        <Rectangle Name="BgFill" Fill="#7d8faf" Opacity="0"></Rectangle>
+        <Rectangle Name="BgFill" Fill="#4bf3ff" Opacity="0"></Rectangle>
         <StackPanel Orientation="Vertical">
             <Grid Height="49">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="30"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="20"/>
                 </Grid.ColumnDefinitions>
-                <Image Name="MainSource" Source="/Assets/Images/advanced.png" Width="20" Height="20"></Image>
-                <Label Name="MainLabel" Grid.Column="1" Content="Main Menu" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans" Foreground="Black"></Label>
-                <Image Grid.Column="2" HorizontalAlignment="Right" Source="/Assets/Images/nextArrow.png" Width="20" Height="20" Margin="0,0,10,0" />
+                <Image Name="MainSource" Source="/Assets/Images/advanced.png" Width="24" Height="24"></Image>
+                <Label Name="MainLabel" Grid.Column="1" Content="Main Menu" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Medium" Foreground="#44475B"></Label>
+                <Image Grid.Column="2" HorizontalAlignment="Right" Source="/Assets/Images/nextArrow.png" Width="18" Height="18" Margin="0,0,10,0" />
             </Grid>
-            <Rectangle HorizontalAlignment="Stretch" Height="1" Fill="#7d8faf" Opacity="0.2"></Rectangle>
         </StackPanel>
     </Grid>
 </UserControl>
