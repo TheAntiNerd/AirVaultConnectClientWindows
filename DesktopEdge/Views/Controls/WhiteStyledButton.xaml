@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="ZitiDesktopEdge.StyledButton"
+﻿<UserControl x:Class="ZitiDesktopEdge.WhiteStyledButton"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -14,17 +14,18 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
-        
-        <Rectangle x:Name="ButtonBg" Margin="40,0,40,0" Opacity="1.0" RadiusX="8" Grid.Row="8" RadiusY="8" ClipToBounds="True" Height="30" VerticalAlignment="Bottom" MouseUp="DoClick" Cursor="Hand" MouseEnter="Hover" MouseLeave="Leave" MouseDown="Down">
+
+        <Rectangle x:Name="ButtonBg" Margin="40,0,40,0" Opacity="1.0" Stroke="#C4C7E3" StrokeThickness="1" RadiusX="8" Grid.Row="8" RadiusY="8" ClipToBounds="True" Height="30" VerticalAlignment="Bottom" MouseUp="DoClick" Cursor="Hand" MouseEnter="Hover" MouseLeave="Leave" MouseDown="Down">
             <Rectangle.Fill>
-                <SolidColorBrush x:Name="ButtonBgColor" Color="#298DFF"/>
+                <SolidColorBrush x:Name="ButtonBgColor" Color="#FFFFFF"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Rectangle x:Name="ButtonBgDarken" Margin="40,0,40,0" Opacity="0.0" RadiusX="8" Grid.Row="8" RadiusY="8" ClipToBounds="True" Height="30" VerticalAlignment="Bottom" MouseUp="DoClick" Cursor="Hand" MouseEnter="Hover" MouseLeave="Leave" MouseDown="Down">
+        <Rectangle x:Name="ButtonBgDarken" Stroke="#C4C7E3" StrokeThickness="1" Margin="40,0,40,0" Opacity="0.0" RadiusX="8" Grid.Row="8" RadiusY="8" ClipToBounds="True" Height="30" VerticalAlignment="Bottom" MouseUp="DoClick" Cursor="Hand" MouseEnter="Hover" MouseLeave="Leave" MouseDown="Down">
             <Rectangle.Fill>
                 <SolidColorBrush Color="#000000"/>
             </Rectangle.Fill>
         </Rectangle>
-        <Label x:Name="ButtonLabel" HorizontalAlignment="Center" IsHitTestVisible="False" Foreground="#FFFFFF" Grid.Row="8" FontSize="14" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Medium"></Label>
+        <Label x:Name="ButtonLabel" HorizontalAlignment="Center" IsHitTestVisible="False" Foreground="#737790" Grid.Row="8" FontSize="14" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Medium"></Label>
     </Grid>
 </UserControl>
+

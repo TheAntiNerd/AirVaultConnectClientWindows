@@ -48,7 +48,6 @@
     <ROW Property="ARPURLINFOABOUT" Value="https://openenziti.io"/>
     <ROW Property="AppLogoIcon" Value="applogoicon" MultiBuildValue="DefaultBuild:ziti.ico#AnyCPU_Release:ziti.ico" Type="1" MsiKey="AppLogoIcon"/>
     <ROW Property="CTRLS" Value="2"/>
-    <ROW Property="LIMITUI" MultiBuildValue="AnyCPU_Release:1"/>
     <ROW Property="Manufacturer" Value="AirVault"/>
     <ROW Property="MsiLogging" MultiBuildValue="AnyCPU_Release:vp"/>
     <ROW Property="ProductCode" Value="1033:{EFEA1F76-87AC-47D7-828C-3ECDCBAC6FA0} " Type="16"/>
@@ -143,7 +142,7 @@
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="251"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="AnyCPU_Release" BuildName="AnyCPU_Release" BuildOrder="2" BuildType="0" PackageFolder="Output" PackageFileName="AirVault Client-[|ProductVersion]" Languages="en" InstallationType="4" CabsLocation="1" PackageType="1" FilesInsideExe="true" ExeIconPath="..\..\desktop-edge-win\Installer\airvault.ico" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" ExtUI="true" UseLargeSchema="true" ExeName="AirVault Client-[|ProductVersion]"/>
+    <ROW BuildKey="AnyCPU_Release" BuildName="AnyCPU_Release" BuildOrder="2" BuildType="0" PackageFolder="Output" PackageFileName="AirVault Client-[|ProductVersion]" Languages="en" InstallationType="4" CabsLocation="1" PackageType="1" FilesInsideExe="true" ExeIconPath="ziti-v2.ico" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" ExtUI="true" UseLargeSchema="true" ExeName="AirVault Client-[|ProductVersion]"/>
     <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" PackageFolder="Output" PackageFileName="AirVault Client-[|ProductVersion]" Languages="en" InstallationType="4" CabsLocation="1" PackageType="1" FilesInsideExe="true" ExeIconPath="..\..\desktop-edge-win\Installer\airvault.ico" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" ExtUI="true" UseLargeSchema="true" ExeName="AirVault Client-[|ProductVersion]" MsiPackageType="x64"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">

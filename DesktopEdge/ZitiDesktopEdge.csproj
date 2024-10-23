@@ -137,6 +137,9 @@
     <Compile Include="Views\Controls\StyledButton.xaml.cs">
       <DependentUpon>StyledButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\WhiteStyledButton.xaml.cs">
+      <DependentUpon>WhiteStyledButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ItemRenderers\Filter.xaml.cs">
       <DependentUpon>Filter.xaml</DependentUpon>
     </Compile>
@@ -183,6 +186,10 @@
     </Compile>
     <Compile Include="Native\WinAPI.cs" />
     <Page Include="Views\Controls\StyledButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\WhiteStyledButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

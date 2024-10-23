@@ -129,8 +129,8 @@
                 <ImageBrush ImageSource="/Assets/Images/background.png" />
             </Rectangle.Fill>
         </Rectangle>
-        <StackPanel x:Name="MainView" Margin="10,10,10,-20">
-            <Grid HorizontalAlignment="Stretch">
+        <StackPanel x:Name="MainView" Margin="10,10,10,-10">
+            <Grid HorizontalAlignment="Stretch" Height="40">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -292,7 +292,7 @@
         <Grid x:Name="LoadingScreen" MouseDown="Window_MouseDown" Visibility="Collapsed" Margin="10,10,10,10">
             <Rectangle RadiusX="10" RadiusY="10">
                 <Rectangle.Fill>
-                    <SolidColorBrush Color="Black" Opacity="0.9"/>
+                    <SolidColorBrush Color="White" Opacity="1.0"/>
                 </Rectangle.Fill>
             </Rectangle>
             <Grid>
@@ -308,8 +308,8 @@
                     <RowDefinition Height="10"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Label x:Name="LoadingTitle" Foreground="White" Content="Loading" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans"/>
-                <TextBlock x:Name="LoadingDetails" TextWrapping="WrapWithOverflow" Foreground="LightGray" Padding="10" Text="${x:DefaultLoadText}" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="14" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans"/>
+                <Label x:Name="LoadingTitle" Foreground="#444758" Content="Loading" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Regular"/>
+                <TextBlock x:Name="LoadingDetails" TextWrapping="WrapWithOverflow" Foreground="#737790" Padding="10" Text="${x:DefaultLoadText}" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="14" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Light"/>
                 <ProgressBar x:Name="LoadProgress" Width="100" Grid.Row="3" IsEnabled="True" />
             </Grid>
         </Grid>

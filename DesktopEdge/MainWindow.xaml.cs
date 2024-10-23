@@ -897,7 +897,7 @@ namespace ZitiDesktopEdge {
             this.Dispatcher.Invoke(() => {
                 logger.Debug("MonitorClient_OnInstallationNotificationEvent: {0}", evt.Message);
                 switch (evt.Message?.ToLower()) {
-                    case "installationupdate":
+                    /*case "installationupdate":
                         logger.Debug("Installation Update is available - {0}", evt.ZDEVersion);
                         var remaining = evt.InstallTime - DateTime.Now;
 
@@ -927,7 +927,7 @@ namespace ZitiDesktopEdge {
                             SetNotifyIcon("");
                             // display a tag in UI and a button for the update software
                         }
-                        break;
+                        break;*/
                     case "configuration changed":
                         break;
                     default:

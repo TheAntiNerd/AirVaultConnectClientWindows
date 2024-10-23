@@ -343,10 +343,10 @@ namespace ZitiDesktopEdge {
             UpdateState();
         }
         private void ShowPrivacy(object sender, MouseButtonEventArgs e) {
-            Process.Start(new ProcessStartInfo("https://netfoundry.io/privacy") { UseShellExecute = true });
+            Process.Start(new ProcessStartInfo("https://myairvault.com/privacy-policy") { UseShellExecute = true });
         }
         private void ShowTerms(object sender, MouseButtonEventArgs e) {
-            Process.Start(new ProcessStartInfo("https://netfoundry.io/terms") { UseShellExecute = true });
+            Process.Start(new ProcessStartInfo("https://myairvault.com/terms-of-service") { UseShellExecute = true });
         }
 
         async public void CollectFeedbackLogs(object sender, MouseButtonEventArgs e) {
@@ -390,7 +390,7 @@ namespace ZitiDesktopEdge {
         }
 
         private void ShowSupport(object sender, MouseButtonEventArgs e) {
-            Process.Start(new ProcessStartInfo("https://openziti.discourse.group/") { UseShellExecute = true });
+            Process.Start(new ProcessStartInfo("https://myairvault.com/support") { UseShellExecute = true });
         }
 
         private void DetachWindow(object sender, MouseButtonEventArgs e) {

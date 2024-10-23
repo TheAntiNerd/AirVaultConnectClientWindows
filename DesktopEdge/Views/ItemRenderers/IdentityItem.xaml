@@ -32,7 +32,7 @@
                         <TextBlock Name="IdName" Width="230" Height="20" Padding="0,0,0,0" Margin="0,0,0,0" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Medium" FontSize="16" Foreground="#44475B" HorizontalAlignment="Left" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap">
                         </TextBlock>
 
-                        <TextBlock Name="IdUrl" Cursor="Hand" MouseUp="OpenDetails" Width="230" Height="20" Margin="0,0,0,0" Padding="0,0,0,0" Typography.Capitals="AllSmallCaps" FontSize="16" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Regular" Foreground="#737790" HorizontalAlignment="Left" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap">
+                        <TextBlock Name="IdUrl" Cursor="Hand" MouseUp="OpenDetails" Width="230" Height="20" Margin="0,0,0,0" Padding="0,0,0,0" Typography.Capitals="AllSmallCaps" FontSize="16" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Regular" Foreground="#737790" HorizontalAlignment="Left" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" Visibility="Collapsed">
                         </TextBlock>
                         
                     </StackPanel>
