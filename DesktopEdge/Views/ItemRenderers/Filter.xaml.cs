@@ -23,7 +23,7 @@ namespace ZitiDesktopEdge {
 
         public delegate void OnFilterEvent(FilterData filter);
         public event OnFilterEvent OnFilter;
-        public string placeholder = "any text";
+        public string placeholder = "";
         private static Timer timeout;
 
         private FilterData filter = new FilterData("", "Name", "Asc");

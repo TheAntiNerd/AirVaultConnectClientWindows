@@ -94,7 +94,7 @@ namespace ZitiDesktopEdge {
                 FilterServices.Clear();
                 scrolledTo = 0;
                 _identity = value;
-                ServiceCount.Content = _identity.Services.Count + " service" + ((_identity.Services.Count != 1) ? "s" : "");
+                ServiceCount.Content = _identity.Services.Count + " service" + ((_identity.Services.Count > 1) ? "s" : "");
                 Page = 1;
                 SortBy = "Name";
                 SortWay = "Asc";
@@ -187,7 +187,7 @@ namespace ZitiDesktopEdge {
             IdentityMFA.AuthOn.Visibility = Visibility.Collapsed;
             IdentityMFA.AuthOff.Visibility = Visibility.Collapsed;
             IdentityMFA.RecoveryButton.Visibility = Visibility.Collapsed;
-            ServiceCount.Visibility = Visibility.Visible;
+            //ServiceCount.Visibility = Visibility.Visible;
 
             scrolledTo = 0;
             IdDetailName.Text = _identity.Name;

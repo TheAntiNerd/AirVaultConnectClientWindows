@@ -10,28 +10,28 @@
         <EventTrigger RoutedEvent="UserControl.MouseEnter" >
             <BeginStoryboard>
                 <Storyboard>
-                    <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BgFill" From="0" To="0.2" Duration="0:0:0.5"></DoubleAnimation>
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BgFill" From="0" To="1.0" Duration="0:0:0.5"></DoubleAnimation>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BgFill" Storyboard.TargetProperty="Visibility">
                         <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Visible}"/>
                     </ObjectAnimationUsingKeyFrames>
-                    <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BgFill" From="0" To="0.2" Duration="0:0:0.5"></DoubleAnimation>
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BgFill" From="0" To="1.0" Duration="0:0:0.5"></DoubleAnimation>
                 </Storyboard>
             </BeginStoryboard>
         </EventTrigger> 
         <EventTrigger RoutedEvent="UserControl.MouseLeave" >
             <BeginStoryboard>
                 <Storyboard>
-                    <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BgFill" From=".2" To="0" Duration="0:0:0.5"></DoubleAnimation>
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BgFill" From="1.0" To="0" Duration="0:0:0.5"></DoubleAnimation>
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BgFill" Storyboard.TargetProperty="Visibility">
                         <DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Visible}"/>
                     </ObjectAnimationUsingKeyFrames>
-                    <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BgFill" From=".2" To="0" Duration="0:0:0.5"></DoubleAnimation>
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BgFill" From="1.0" To="0" Duration="0:0:0.5"></DoubleAnimation>
                 </Storyboard>
             </BeginStoryboard>
         </EventTrigger>
     </UserControl.Triggers>
     <Grid>
-        <Rectangle Name="BgFill" Fill="#4bf3ff" Opacity="0"></Rectangle>
+        <Rectangle Name="BgFill" Fill="#EBF3FF" Opacity="0.0" RadiusX="8" RadiusY="8"></Rectangle>
         <StackPanel Orientation="Vertical">
             <Grid Height="49">
                 <Grid.ColumnDefinitions>

@@ -182,13 +182,13 @@ namespace ZitiDesktopEdge {
             available = _identity.Services.Count;
             ToggleSwitch.Enabled = _identity.IsEnabled;
             ServiceCountAreaLabel.Content = "services";
-            ServiceCount.Content = _identity.Services.Count.ToString() + " service" + ((_identity.Services.Count != 1) ? "s" : "");
+            ServiceCount.Content = _identity.Services.Count.ToString() + " service" + ((_identity.Services.Count > 1) ? "s" : "");
             MainArea.Opacity = 1.0;
-            ServiceCountArea.Visibility = Visibility.Visible;
+            //ServiceCountArea.Visibility = Visibility.Visible;
             ServiceCountAreaLabel.Content = "services";
             // logger.Info("RefreshUI " + _identity.Name + " MFA: "+ _identity.IsMFAEnabled+" Authenticated: "+_identity.IsAuthenticated);
 
-            ServiceCount.Content = _identity.Services.Count.ToString() + " service" + ((_identity.Services.Count != 1) ? "s" : "");
+            ServiceCount.Content = _identity.Services.Count.ToString() + " service" + ((_identity.Services.Count > 1) ? "s" : "");
             if (_identity.IsMFAEnabled) {
                 if (_identity.IsMFANeeded) {
                     // enabled and needed = needs to be authorized. show the lock icon and tell the user to auth
@@ -212,7 +212,7 @@ namespace ZitiDesktopEdge {
             if (idViewState == 0) {
                 ExtAuthRequired.Visibility = Visibility.Collapsed;
                 MfaRequired.Visibility = Visibility.Collapsed;
-                ServiceCountArea.Visibility = Visibility.Visible;
+                //ServiceCountArea.Visibility = Visibility.Visible;
             } else if (idViewState % (int)IdentityStates.NeedsExtAuth == 0) {
                 ExtAuthRequired.Visibility = Visibility.Visible;
                 MfaRequired.Visibility = Visibility.Collapsed;
@@ -342,7 +342,7 @@ namespace ZitiDesktopEdge {
         }
 
         private void Canvas_MouseEnter(object sender, MouseEventArgs e) {
-            OverState.Opacity = 0.2;
+            OverState.Opacity = 1.0;
         }
 
         private void Canvas_MouseLeave(object sender, MouseEventArgs e) {

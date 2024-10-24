@@ -128,3 +128,91 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Ignore Visual Studio temporary files, build results, and
+# user-specific files
+
+# User-specific files
+.vscode/
+*.rsuser
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Mono auto generated files
+mono_crash.*
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# WPF specific files
+*.g.i.cs
+*.g.cs
+
+# NuGet packages
+*.nupkg
+# The packages folder can be ignored because of Package Restore
+**/[Pp]ackages/*
+# Uncomment if necessary however generally it will be restored via NuGet
+#!**/[Pp]ackages/build/
+#!**/[Pp]ackages/repositories.config
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# End of Windows image file caches
+
+# WPF App publish-specific files
+publish/
+*.publishproj
+
+# Visual Studio working folder (used for temporary projects)
+.vs/
+# Visual Studio Code settings
+.vscode/
+
+# Rider files
+.idea/
+
+# JetBrains Rider build results
+*.Rider
+
+# Avoid uploading test results
+TestResults/
+*.trx
+*.testlog
+
+# Ignore IIS generated files
+[Ii][Nn][Ee][Tt][Pp][Uu][Bb]/
+[Ll]og/
+
+# Ignore Web component artifacts
+.bundle/
+.npm/
+node_modules/
+bower_components/
+
+# DotNet SDK and tooling
+global.json
+.vsconfig
+
+# Docker
+*.dockerignore

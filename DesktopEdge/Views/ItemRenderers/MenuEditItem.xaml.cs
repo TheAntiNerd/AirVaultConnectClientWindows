@@ -39,12 +39,14 @@ namespace ZitiDesktopEdge {
             }
         }
         public bool IsLocked {
-            get {
+            get;
+            set;
+            /*get {
                 return MainEdit.IsReadOnly;
             }
             set {
                 MainEdit.IsReadOnly = value;
-            }
+            }*/
         }
 
         public MenuEditItem() {

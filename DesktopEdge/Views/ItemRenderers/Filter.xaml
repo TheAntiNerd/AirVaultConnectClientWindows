@@ -5,29 +5,36 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ZitiDesktopEdge"
              mc:Ignorable="d" 
-             d:DesignHeight="36" 
-             Height="36" 
+             d:DesignHeight="42" 
+             Height="42" 
              HorizontalAlignment="Stretch" 
              d:DesignWidth="350" >
     <Grid Margin="0,0,0,0">
-        <Rectangle Margin="0,0,0,0" Fill="#070826" Opacity="0.1" RadiusY="0" RadiusX="0"></Rectangle>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Margin="0,0,0,0" Fill="White" Opacity="1.0" RadiusY="0" RadiusX="0"></Rectangle>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Label Content="Filter" Foreground="Black" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12" FontWeight="Bold" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans"></Label>
-            <TextBox x:Name="FilterFor" Text="any text" Width="80" Height="26" Padding="6,0,6,0" Grid.Row="0" VerticalContentAlignment="Center" BorderThickness="0" Cursor="Hand" Foreground="#070826" FontSize="12" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" GotFocus="FocusFilter" LostFocus="FocusLostFilter" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans" Keyboard.KeyUp="FilterChanged" Keyboard.KeyDown="FilterPressed">
-                <TextBox.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="7"/>
-                    </Style>
-                </TextBox.Resources>
-            </TextBox>
-            <Label Content=" and sort by " Foreground="Black" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans"></Label>
-            <ComboBox Name="SortByField" SelectionChanged="SortByChanged" Width="80" VerticalContentAlignment="Center" Cursor="Hand" Height="26" VerticalAlignment="Center" TextBlock.TextAlignment="Center" HorizontalAlignment="Stretch" BorderThickness="0" Foreground="#070826" FontFamily="/ZitiDesktopEdge;component/Assets/Fonts/#Open Sans" FontSize="12" Style="{DynamicResource FilterComboStyle}">
+            <Label Grid.Column="0" Content="Services" Foreground="#44475B" Margin="12,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Medium"></Label>
+            <Grid Grid.Column="1" Grid.Row="0" Margin="10,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="270" Height="40" >
+                <TextBox x:Name="FilterFor" Text="" Padding="30,0,0,0" VerticalContentAlignment="Center" BorderThickness="1" Cursor="Hand" Foreground="#44475B" FontSize="16" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" GotFocus="FocusFilter" LostFocus="FocusLostFilter" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Regular" Keyboard.KeyUp="FilterChanged" Keyboard.KeyDown="FilterPressed">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="8"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <Image Source="/Assets/Images/search.png" Width="20" Height="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0"></Image>
+            </Grid>
+            <Label Content=" and sort by " Foreground="Black" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans" Visibility="Collapsed"></Label>
+            <ComboBox Name="SortByField" SelectionChanged="SortByChanged" Width="80" VerticalContentAlignment="Center" Cursor="Hand" Height="26" VerticalAlignment="Center" TextBlock.TextAlignment="Center" HorizontalAlignment="Stretch" BorderThickness="0" Foreground="#070826" FontFamily="/ZitiDesktopEdge;component/Assets/Fonts/#Open Sans" FontSize="12" Style="{DynamicResource FilterComboStyle}" Visibility="Collapsed">
                 <ComboBoxItem IsSelected="True">Name</ComboBoxItem>
                 <ComboBoxItem>Address</ComboBoxItem>
                 <ComboBoxItem>Protocol</ComboBoxItem>
                 <ComboBoxItem>Port</ComboBoxItem>
             </ComboBox>
-            <ComboBox Name="SortWayField" Margin="5,0,0,0" Width="60" VerticalContentAlignment="Center" SelectionChanged="SortWayChanged" Cursor="Hand" Height="26" VerticalAlignment="Center" TextBlock.TextAlignment="Center" HorizontalAlignment="Stretch" BorderThickness="0" Foreground="#070826" FontFamily="/ZitiDesktopEdge;component/Assets/Fonts/#Open Sans" FontSize="12" Style="{DynamicResource FilterComboStyle}">
+            <ComboBox Name="SortWayField" Margin="5,0,0,0" Width="60" VerticalContentAlignment="Center" SelectionChanged="SortWayChanged" Cursor="Hand" Height="26" VerticalAlignment="Center" TextBlock.TextAlignment="Center" HorizontalAlignment="Stretch" BorderThickness="0" Foreground="#070826" FontFamily="/ZitiDesktopEdge;component/Assets/Fonts/#Open Sans" FontSize="12" Style="{DynamicResource FilterComboStyle}" Visibility="Collapsed">
                 <ComboBoxItem IsSelected="True">Asc</ComboBoxItem>
                 <ComboBoxItem>Desc</ComboBoxItem>
             </ComboBox>

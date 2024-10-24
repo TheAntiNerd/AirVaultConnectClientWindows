@@ -452,7 +452,7 @@ namespace ZitiDesktopEdge {
             //this.AutomaticUpgradesItemOff.IsSelected = disabled;
             this.UpdateUrl.Text = state.AutomaticUpdateURL;
 
-            this.AutoUpdateToggle.Enabled = !disabled;
+            this.AutoUpdateToggle.Enabled = false;
         }
 
         async private void CheckForUpdate_OnClick(object sender, MouseButtonEventArgs e) {
@@ -638,9 +638,9 @@ namespace ZitiDesktopEdge {
             }
             EditArea.Opacity = 0;
             EditArea.Visibility = Visibility.Visible;
-            EditArea.Margin = new Thickness(0, 0, 0, 0);
+            //EditArea.Margin = new Thickness(0, 0, 0, 0);
             EditArea.BeginAnimation(Grid.OpacityProperty, new DoubleAnimation(1, TimeSpan.FromSeconds(.3)));
-            EditArea.BeginAnimation(Grid.MarginProperty, new ThicknessAnimation(new Thickness(30, 30, 30, 30), TimeSpan.FromSeconds(.3)));
+            //EditArea.BeginAnimation(Grid.MarginProperty, new ThicknessAnimation(new Thickness(0, 0, 0, 0), TimeSpan.FromSeconds(.3)));
             ShowModal();
         }
 

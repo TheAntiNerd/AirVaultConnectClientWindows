@@ -486,6 +486,8 @@
     <Resource Include="Assets\Images\processing.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\Images\search.png" />
+    <Resource Include="Assets\Images\delete.png" />
     <Resource Include="airvault.ico" />
     <Resource Include="Assets\Images\updates.png" />
     <Resource Include="Assets\Images\log_level.png" />

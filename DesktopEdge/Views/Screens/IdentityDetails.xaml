@@ -29,27 +29,30 @@
                 <!-- Header Controls -->
                 <Grid Margin="0,0,0,10">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <Image x:Name="IsConnected" Grid.Column="0" Visibility="Visible" Source="/Assets/Images/online.png" Height="25" HorizontalAlignment="Right" Cursor="Hand" MouseUp="DoDisconnect" />
+                    <StackPanel Cursor="Hand" Grid.Column="0" Margin="20,0,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Orientation="Horizontal" MouseLeftButtonUp="HideMenu">
+                        <Image Source="/Assets/Images/lastArrow.png" Width="28" Height="28"></Image>
+                    </StackPanel>
+                    <Image x:Name="IsConnected" Grid.Column="0" Visibility="Collapsed" Source="/Assets/Images/online.png" Height="25" HorizontalAlignment="Right" Cursor="Hand" MouseUp="DoDisconnect" />
                     <Image x:Name="IsDisconnected" Grid.Column="0" Visibility="Collapsed" Source="/Assets/Images/offline.png" Height="25" HorizontalAlignment="Right" Cursor="Hand" MouseUp="DoConnect" />
-                    <TextBlock x:Name="IdDetailName" MouseDown="Window_MouseDown" MaxWidth="220" Grid.Column="1" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans" Foreground="#0F0F23" VerticalAlignment="Center" TextWrapping="NoWrap" />
-                    <Image Grid.Column="2" Cursor="Hand" Source="/Assets/Images/x.png" Width="20" Height="20" Margin="0,0,0,0" HorizontalAlignment="Left" MouseUp="HideMenu"></Image>
+                    <TextBlock x:Name="IdDetailName" MouseDown="Window_MouseDown" Grid.Column="1" MinWidth="220" TextTrimming="CharacterEllipsis" HorizontalAlignment="Stretch" FontSize="16" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Regular" Foreground="#44475B" VerticalAlignment="Center" TextWrapping="NoWrap" />
+                    <Image Grid.Column="2" Cursor="Hand" Source="/Assets/Images/x.png" Width="20" Height="20" Margin="0,0,30,0" HorizontalAlignment="Left" MouseUp="HideMenu"></Image>
                 </Grid>
-                <Rectangle Margin="40,0,40,10" Fill="#070826" Height="1" RadiusY="10" RadiusX="10" Opacity="0.1"></Rectangle>
+                <!--Rectangle Margin="40,0,40,10" Fill="#070826" Height="1" RadiusY="10" RadiusX="10" Opacity="0.1"></Rectangle-->
                 <local:MenuEditItem x:Name="IdName" Label="Name" IsLocked="True" />
-                <Rectangle Margin="40,0,40,10" Fill="#070826" Height="1" RadiusY="10" RadiusX="10" Opacity="0.1"></Rectangle>
+                <!--Rectangle Margin="40,0,40,10" Fill="#070826" Height="1" RadiusY="10" RadiusX="10" Opacity="0.1"></Rectangle-->
                 <local:MenuEditItem x:Name="IdServer" Label="Network" IsLocked="True" />
-                <Rectangle Margin="40,0,40,10" Fill="#070826" Height="1" RadiusY="10" RadiusX="10" Opacity="0.1"></Rectangle>
-                <local:MenuEditToggle x:Name="IdentityMFA" HorizontalAlignment="Stretch" Label="Multi Factor Auth" Margin="0,10,0,0" Recovery="MFARecovery" Authenticate="MFAAuthenticate" Toggle="ToggleMFA"></local:MenuEditToggle>
+                <!--Rectangle Margin="40,0,40,10" Fill="#070826" Height="1" RadiusY="10" RadiusX="10" Opacity="0.1"></Rectangle-->
+                <local:MenuEditToggle x:Name="IdentityMFA" HorizontalAlignment="Stretch" Label="Multi Factor Auth" Margin="0,10,0,0" Recovery="MFARecovery" Authenticate="MFAAuthenticate" Toggle="ToggleMFA" Visibility="Collapsed"></local:MenuEditToggle>
 
                 <local:Filter x:Name="FilterServices" OnFilter="DoFilter" VerticalAlignment="Top" Margin="10,16,10,0" />
 
                 <TextBox Name="NoAuthServices" Height="30" FontWeight="Bold" Margin="10,0,10,0" TextAlignment="Center" Text="You must authenticate to access services" IsReadOnly="True" HorizontalAlignment="Stretch" BorderThickness="0" ClipToBounds="True" Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" Padding="0,6,3,0" FontSize="12" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans" Foreground="Black"></TextBox>
                 <Grid Name="MainDetailScroll" MaxHeight="160" Margin="10,0,10,-10">
-                    <Rectangle Margin="10,10,10,10" Fill="#070826" RadiusY="10" RadiusX="10"></Rectangle>
+                    <Rectangle Margin="10,10,10,10" Fill="#FFFFFF" RadiusY="10" RadiusX="10"></Rectangle>
                     <ListView x:Name="ServiceList" VirtualizingPanel.IsVirtualizing="True" ScrollViewer.IsDeferredScrollingEnabled="True" ScrollViewer.ScrollChanged="Scrolled" Focusable="False" IsManipulationEnabled="False" BorderThickness="0" Background="Transparent" Margin="20,20,10,20" Style="{DynamicResource ServiceListStyle}">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="{x:Type ListViewItem}">
@@ -65,42 +68,47 @@
                         </ListView.ItemContainerStyle>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid Height="32">
+                                <Grid Height="50">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="200"/>
-                                        <ColumnDefinition Width="100"/>
-                                        <ColumnDefinition x:Name="TimerColumn" Width="20"/>
-                                        <ColumnDefinition x:Name="WarningColumn" Width="20"/>
-                                        <ColumnDefinition x:Name="DetailColumn" Width="20"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition x:Name="TimerColumn" Width="Auto"/>
+                                        <ColumnDefinition x:Name="WarningColumn" Width="Auto"/>
+                                        <ColumnDefinition x:Name="DetailColumn" Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <StackPanel Orientation="Vertical" Height="30" Grid.Column="0">
-                                        <TextBlock Name="MainLabel" Text="{Binding Name}" Padding="0,0,12,0" Height="15" FontWeight="Bold" Background="Transparent" ClipToBounds="True" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" FontSize="11" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans" Foreground="White"></TextBlock>
-                                        <TextBlock Name="MainEdit" Text="{Binding AddressString}" Height="14" Padding="0,0,12,0" Background="Transparent" ClipToBounds="True" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Stretch" FontSize="10" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans" Foreground="LightGray"></TextBlock>
+                                    <StackPanel Orientation="Vertical" Height="50" Grid.Column="0">
+                                        <TextBlock Name="MainLabel" Text="{Binding Name}" Padding="0,0,0,0" Background="Transparent" ClipToBounds="True" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" FontSize="14" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Medium" Foreground="#44475B"></TextBlock>
+                                        <TextBlock Name="MainEdit" Text="{Binding AddressString}" Padding="0,0,0,0" Background="Transparent" ClipToBounds="True" Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Stretch" FontSize="16" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Regular" Foreground="#737790"></TextBlock>
                                     </StackPanel>
-                                    <StackPanel Orientation="Vertical" Height="30" Grid.Column="1">
+                                    <StackPanel Orientation="Vertical" Height="50" Grid.Column="1" Visibility="Collapsed" >
                                         <TextBlock Name="Protocols" Text="{Binding ProtocolString}" Padding="0,0,12,0" Height="15" FontWeight="Bold" Background="Transparent" ClipToBounds="True" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="11" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans" Foreground="White" Opacity="0.9"></TextBlock>
                                         <TextBlock Name="Ports" Text="{Binding PortString}" Height="14" Padding="0,0,12,0" HorizontalAlignment="Center" Background="Transparent" ClipToBounds="True" Grid.Column="0" VerticalAlignment="Top" FontSize="10" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans" Foreground="LightGray"></TextBlock>
                                     </StackPanel>
-                                    <Image x:Name="TimerIcon" Visibility="{Binding TimerVisibility}" Source="/Assets/Images/timer.png" Grid.Column="2" Width="20" Height="20" Cursor="Hand" MouseUp="DoMFA"/>
-                                    <Image x:Name="TimedOutIcon" Visibility="{Binding MfaVisibility}" Source="/Assets/Images/mfaoff.png" Grid.Column="2" Width="20" Height="20" Cursor="Hand" MouseUp="DoMFA"/>
-                                    <Image x:Name="WarnIcon" Visibility="{Binding WarningVisibility}" ToolTip="{Binding WarningMessage}" Source="/Assets/Images/Warning.png" Grid.Column="3" Width="20" Height="20" Cursor="Hand" MouseUp="WarnClicked"/>
-                                    <Image x:Name="DetailIcon" Source="/Assets/Images/detail.png" Grid.Column="4" Width="20" Height="20" Cursor="Hand" MouseUp="DetailsClicked"/>
+                                    <Image x:Name="TimerIcon" Visibility="Collapsed" Source="/Assets/Images/timer.png" Grid.Column="2" Width="20" Height="20" Cursor="Hand" MouseUp="DoMFA"/>
+                                    <Image x:Name="TimedOutIcon" Visibility="Collapsed" Source="/Assets/Images/mfaoff.png" Grid.Column="2" Width="20" Height="20" Cursor="Hand" MouseUp="DoMFA"/>
+                                    <Image x:Name="WarnIcon" Visibility="Collapsed" ToolTip="{Binding WarningMessage}" Source="/Assets/Images/Warning.png" Grid.Column="3" Width="20" Height="20" Cursor="Hand" MouseUp="WarnClicked"/>
+                                    
+                                    <Image x:Name="DetailIcon" Grid.Column="4" Source="/Assets/Images/next.png"  VerticalAlignment="Center" Width="18" Height="18" MouseUp="DetailsClicked" Cursor="Hand"></Image>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
                 </Grid>
-                <Label x:Name="ServiceCount" HorizontalAlignment="Center" Content="0 Services" Margin="0,0,0,0" Foreground="Gray" FontWeight="Bold" FontSize="12" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans"></Label>
+                <Label x:Name="ServiceCount" HorizontalAlignment="Center" Content="0 Services" Margin="0,0,0,0" Foreground="Gray" FontWeight="Bold" FontSize="12" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans" Visibility="Collapsed"></Label>
                 <Grid>
                     <Rectangle x:Name="AuthMessageBg" Margin="40,0,40,0" Opacity="0.8" RadiusX="7" RadiusY="7" ClipToBounds="True" Height="30" VerticalAlignment="Bottom" Cursor="Hand" MouseUp="AuthFromMessage">
                         <Rectangle.Fill>
-                            <SolidColorBrush x:Name="AuthBgColor" Color="#0069FF"/>
+                            <SolidColorBrush x:Name="AuthBgColor" Color="#298DFF"/>
                         </Rectangle.Fill>
                     </Rectangle>
                     <Label x:Name="AuthMessageLabel" HorizontalAlignment="Center" Content="Authenticate" IsHitTestVisible="False" Foreground="#FFFFFF"></Label>
                 </Grid>
             </StackPanel>
-            <local:StyledButton x:Name="ForgetIdentityButton" MinWidth="310" BgColor="#F4044D" Label="Forget This Identity" Margin="0,0,0,40" OnClick="ForgetIdentity" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+            <StackPanel x:Name="ForgetIdentityButton"  Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Cursor="Hand" Margin="0,0,0,50" MouseLeftButtonUp="ForgetIdentity">
+                <Image Source="/Assets/Images/delete.png" Width="16" Height="16"></Image>
+                <Label FontSize="16" Foreground="#44475B" Content="Delete identity" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Medium"></Label>
+            </StackPanel>
+            <!--local:StyledButton x:Name="ForgetIdentityButton" MinWidth="310" BgColor="#F4044D" Label="Forget This Identity" Margin="0,0,0,40" OnClick="ForgetIdentity" HorizontalAlignment="Center" VerticalAlignment="Bottom" /-->
         </Grid>
         <Rectangle x:Name="ModalBg" Margin="10,10,10,10" Fill="Black" RadiusY="10" RadiusX="10" Opacity="0" Visibility="Collapsed" MouseDown="Window_MouseDown"></Rectangle>
 
@@ -187,11 +195,11 @@
         <Grid x:Name="ConfirmView" Visibility="Collapsed" Width="400">
             <Rectangle RadiusX="10" RadiusY="10">
                 <Rectangle.Fill>
-                    <SolidColorBrush Color="Black"/>
+                    <SolidColorBrush Color="White"/>
                 </Rectangle.Fill>
             </Rectangle>
             <Canvas>
-                <Rectangle Name="ConfirmArrow" HorizontalAlignment="Center" Height="20" Fill="Black" Width="20" Canvas.Left="185" ClipToBounds="True" Canvas.Bottom="-10">
+                <Rectangle Name="ConfirmArrow" HorizontalAlignment="Center" Height="20" Fill="White" Width="20" Canvas.Left="185" ClipToBounds="True" Canvas.Bottom="-10">
                     <Rectangle.LayoutTransform>
                         <RotateTransform Angle="-45"/>
                     </Rectangle.LayoutTransform>
@@ -211,21 +219,21 @@
                     <RowDefinition Height="30"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Label Name="ErrorTitle" Foreground="White" Content="Confirm Forget" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans"/>
-                <TextBlock TextWrapping="WrapWithOverflow" Foreground="LightGray" Padding="30" Text="If you delete this identity you will no longer have access to the resources that it grants you." Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="14" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans"/>
+                <Label Name="ErrorTitle" Foreground="#444758" Content="Delete identity?" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Regular"/>
+                <TextBlock TextWrapping="WrapWithOverflow" Foreground="#737790" Padding="30" Text="If you delete this identity you will no longer have access to the resources that it grants you." Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="14" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Light"/>
                 <Grid Grid.Row="4">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                         <ColumnDefinition Width="1*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="CancelConfirmButton" Grid.Column="0" Margin="40,0,20,0" Cursor="Hand" BorderThickness="0" Foreground="#FFFFFF" Background="#0068F9" Content="Close" Click="CancelConfirmButton_Click" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans">
+                    <Button x:Name="CancelConfirmButton" Grid.Column="0" Margin="40,0,20,0" Cursor="Hand" BorderThickness="0" Foreground="#FFFFFF" Background="#298DFF" Content="Cancel" Click="CancelConfirmButton_Click" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Regular">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>
                             </Style>
                         </Button.Resources>
                     </Button>
-                    <Button x:Name="ConfirmButton" Grid.Column="1" Margin="20,0,40,0" Cursor="Hand" BorderThickness="0" Foreground="#FFFFFF" Background="#F4044D" Content="Confirm" Click="ConfirmButton_Click" FontFamily="pack://application:,,,/Assets/Fonts/#Open Sans">
+                    <Button x:Name="ConfirmButton" Grid.Column="1" Margin="20,0,40,0" Cursor="Hand" BorderThickness="0" Foreground="#FFFFFF" Background="#F4044D" Content="Delete" Click="ConfirmButton_Click" FontFamily="pack://application:,,,/Assets/Fonts/#Poppins Regular">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="5"/>

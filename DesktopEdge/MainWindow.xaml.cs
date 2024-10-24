@@ -1493,6 +1493,14 @@ namespace ZitiDesktopEdge {
                     DisconnectButton.Visibility = Visibility.Collapsed;
                     IdentityMenu.Visibility = Visibility.Collapsed;
                     MainMenu.Visibility = Visibility.Collapsed;
+                    
+                    this.Dispatcher.Invoke(() =>
+                    {
+                        IdListScroller.Visibility = Visibility.Collapsed;
+                        this.InvalidateVisual();
+                        this.UpdateLayout();
+                    });
+
                     HideBlurb();
                     MainMenu.Disconnected();
                     DownloadSpeed.Content = "0.0";
